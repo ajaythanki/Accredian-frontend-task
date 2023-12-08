@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/api/auth/";
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 const userLogin = async (credentials) => {
   const {data} = await axios.post(`${baseURL}login`,credentials,{
     withCredentials:true,

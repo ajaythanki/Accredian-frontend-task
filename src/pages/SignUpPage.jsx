@@ -9,7 +9,10 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useSignupMutation, useVerifyUserMutation } from "../redux/features/auth/hooks/useAuth";
+import {
+  useSignupMutation,
+  useVerifyUserMutation,
+} from "../redux/features/auth/hooks/useAuth";
 
 export default function SignUpPage() {
   const [formValues, setFormValues] = useState({
@@ -104,8 +107,6 @@ export default function SignUpPage() {
         password: formValues.password.value.trim(),
       });
     }
-
-
   };
 
   if (isVerifySuccess) {
@@ -127,7 +128,13 @@ export default function SignUpPage() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} display={!isSignupSuccess} sx={{ mt: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          display={!isSignupSuccess}
+          sx={{ mt: 3 }}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -214,7 +221,7 @@ export default function SignUpPage() {
           >
             Sign Up
           </Button>
-          
+
           <Grid container justifyContent="flex-end">
             <Grid item>
               <RouterLink to="/login" variant="body2">
@@ -224,41 +231,43 @@ export default function SignUpPage() {
           </Grid>
         </Box>
         <Box>
-        {
-          isSignupSuccess && 
-          <Box component="form" noValidate onSubmit={handleVerifyOTP} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="otp"
-                  label="OTP"
-                  type="password"
-                  id="otp"
-                  autoComplete="new-otp"
-                  disabled={!isSignupSuccess}
-                  onChange={handleChange}
-                  error={formValues.otp.error}
-                  value={formValues.otp.value}
-                  helperText={
-                    formValues.otp.error
-                      ? formValues.otp.errorMessage
-                      : ""
-                  }
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Verify
-                </Button>
+          {isSignupSuccess && (
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleVerifyOTP}
+              sx={{ mt: 3 }}
+            >
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="otp"
+                    label="OTP"
+                    type="password"
+                    id="otp"
+                    autoComplete="new-otp"
+                    disabled={!isSignupSuccess}
+                    onChange={handleChange}
+                    error={formValues.otp.error}
+                    value={formValues.otp.value}
+                    helperText={
+                      formValues.otp.error ? formValues.otp.errorMessage : ""
+                    }
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Verify
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-        </Box>
-        }
+            </Box>
+          )}
         </Box>
       </Box>
     </Layout>

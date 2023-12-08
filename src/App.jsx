@@ -1,33 +1,31 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Layout from './components/Layout'
-import { setUser } from './redux/features/auth/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { Link } from '@mui/material'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import Layout from "./components/Layout";
+import { setUser } from "./redux/features/auth/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user.email);
 
   useEffect(() => {
-    if(!user){
+    if (!user) {
       const userData = JSON.parse(window.localStorage.getItem("authUser"));
       if (userData?.email) {
         dispatch(setUser(userData));
-      }else{
+      } else {
         navigate("/login");
       }
-      console.log(user);
     }
   }, []);
   return (
     <Layout>
-      <div style={{textAlign:'center'}}>
-      
+      <div style={{ textAlign: "center" }}>
         <Link href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </Link>
@@ -35,8 +33,8 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </Link>
       </div>
-      <h1 style={{textAlign:'center'}}>Vite + React</h1>
-      <div style={{textAlign:'center'}}>
+      <h1 style={{ textAlign: "center" }}>Vite + React</h1>
+      <div style={{ textAlign: "center" }}>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -44,12 +42,11 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p style={{textAlign:'center'}} >
+      <p style={{ textAlign: "center" }}>
         Click on the Vite and React logos to learn more
       </p>
     </Layout>
   );
 }
 
-export default App
-
+export default App;

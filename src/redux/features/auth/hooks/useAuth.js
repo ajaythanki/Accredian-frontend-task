@@ -55,7 +55,7 @@ export const useLoginMutation = () =>
     },
     onError: (error) => {
       console.log(error);
-      if(error.message == "Network Error"){
+      if (error.message == "Network Error") {
         toast.error(`Something went wrong`, {
           id: "userlogin",
         });
